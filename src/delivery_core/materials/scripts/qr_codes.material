@@ -1,0 +1,56 @@
+
+material QR/Wheels
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture wheels.png
+      }
+    }
+  }
+}
+
+material QR/Engine
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture engine.png
+      }
+    }
+  }
+}
+
+material QR/Shampoo
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture shampoo.png
+      }
+    }
+  }
+}
+
+material QR/Laptop
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture laptop.png
+      }
+    }
+  }
+}

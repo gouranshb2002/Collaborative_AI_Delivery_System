@@ -1,0 +1,7 @@
+Terminal 1 (The World): ros2 launch delivery_core multi_bot.launch.py
+
+Terminal 2 (The Vision): ros2 run delivery_core detector_node
+
+Terminal 3 (The Mapper): ros2 run delivery_core patrol_node
+
+Terminal 4 (The Planner): ros2 run delivery_core central_planner

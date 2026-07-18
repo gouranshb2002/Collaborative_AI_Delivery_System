@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="delivery_apartment">
+    
+    <include><uri>model://sun</uri></include>
+    <include><uri>model://ground_plane</uri></include>
+
+    <model name="walls">
+      <static>true</static>
+      <link name="north_wall">
+        <pose>0 1.0 0.25 0 0 0</pose>
+        <collision name="collision"><geometry><box><size>2.1 0.1 0.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>2.1 0.1 0.5</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient></material>
+        </visual>
+      </link>
+      <link name="south_wall">
+        <pose>0 -1.0 0.25 0 0 0</pose>
+        <collision name="collision"><geometry><box><size>2.1 0.1 0.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>2.1 0.1 0.5</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient></material>
+        </visual>
+      </link>
+      <link name="east_wall">
+        <pose>1.0 0 0.25 0 0 0</pose>
+        <collision name="collision"><geometry><box><size>0.1 2.1 0.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.1 2.1 0.5</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient></material>
+        </visual>
+      </link>
+      <link name="west_wall">
+        <pose>-1.0 0 0.25 0 0 0</pose>
+        <collision name="collision"><geometry><box><size>0.1 2.1 0.5</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>0.1 2.1 0.5</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="resting_area">
+      <static>true</static>
+      <pose>-0.5 -0.5 0.001 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>0.8 0.8 0.002</size></box></geometry>
+          <material><ambient>0.0 1.0 0.0 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="delivery_zone">
+      <static>true</static>
+      <pose>0.5 0.5 0.001 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>0.6 0.6 0.002</size></box></geometry>
+          <material><ambient>0.0 0.0 1.0 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="product_targets">
+      <static>true</static>
+      
+      <link name="target_wheels">
+        <pose>0.5 0.94 0.12 0 0 0</pose>
+        <visual name="visual">
+          <geometry><box><size>0.1 0.02 0.1</size></box></geometry>
+          <material>
+            <script>
+              <uri>model://delivery_core/materials/scripts</uri>
+              <uri>model://delivery_core/materials/textures</uri>
+              <name>QR/Wheels</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+
+      <link name="target_shampoo">
+        <pose>-0.5 0.94 0.12 0 0 0</pose>
+        <visual name="visual">
+          <geometry><box><size>0.1 0.02 0.1</size></box></geometry>
+          <material>
+            <script>
+              <uri>model://delivery_core/materials/scripts</uri>
+              <uri>model://delivery_core/materials/textures</uri>
+              <name>QR/Shampoo</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+
+      <link name="target_engine">
+        <pose>0.94 0.5 0.12 0 0 0</pose>
+        <visual name="visual">
+          <geometry><box><size>0.02 0.1 0.1</size></box></geometry>
+          <material>
+            <script>
+              <uri>model://delivery_core/materials/scripts</uri>
+              <uri>model://delivery_core/materials/textures</uri>
+              <name>QR/Engine</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+
+      <link name="target_laptop">
+        <pose>0.94 -0.5 0.12 0 0 0</pose>
+        <visual name="visual">
+          <geometry><box><size>0.02 0.1 0.1</size></box></geometry>
+          <material>
+            <script>
+              <uri>model://delivery_core/materials/scripts</uri>
+              <uri>model://delivery_core/materials/textures</uri>
+              <name>QR/Laptop</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+
+    </model>
+  </world>
+</sdf>
