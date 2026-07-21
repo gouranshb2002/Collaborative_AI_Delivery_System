@@ -1,6 +1,13 @@
 # Collaborative AI Delivery System
 A fully autonomous, multi-robot logistics system built in ROS 2 (Humble). This project features AI-driven YOLO object detection, decentralized state-machine orchestration, and precise 5-DOF robotic arm kinematics to seamlessly bridge the gap between Gazebo simulation and physical hardware deployment.
 
+## Project Versions & Branches
+This repository is maintained across two official versions depending on your execution preference:
+
+*   **`v1.1-with-docker` (Recommended):** Pre-packaged with a complete Docker environment. It isolates ROS 2 Humble, Gazebo, and OpenCV dependencies inside a container to guarantee a 100% bug-free setup across all systems.
+*   **`v1.0-no-docker`:** Pure ROS 2 workspace containing only the source code. Use this branch if you prefer a native, non-containerized installation on a local Ubuntu 22.04 machine.
+You can switch between these versions using the branch dropdown menu at the top-left of the GitHub repository page.
+
 ## Summary
 This project presents a fully autonomous, multi-robot delivery architecture designed to solve decentralized logistics challenges. The system orchestrates two distinct TurtleBot3 platforms to execute complex supply-chain tasks without human intervention:
 1. **The Detector Bot (Vision & Mapping):** Navigates the facility to locate inventory using an onboard camera and YOLO-based AI object detection.
@@ -102,6 +109,6 @@ In simulation, the walls are mathematically perfect. In the real world, odometry
 
 ## Academic Information
 - Author: Gouransh Bhatnagar
-- Demo Video:
-- Presentation:
+- University: Technische Hochschule Deggendorf (Campus Cham)
+- LinkedIn: https://linkedin.com/in/gouranshbhatnagar
 - License: Apache License 2.0
