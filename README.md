@@ -1,4 +1,4 @@
-# Collaborative AI Delivery System v1.1
+# Collaborative AI Delivery System (v1.1)
 A fully autonomous, multi-robot logistics system built in ROS 2 (Humble). This project features AI-driven YOLO object detection, decentralized state-machine orchestration, and precise 5-DOF robotic arm kinematics to seamlessly bridge the gap between Gazebo simulation and physical hardware deployment.
 
 ## Summary
@@ -14,61 +14,64 @@ This project presents a fully autonomous, multi-robot delivery architecture desi
 - **Computer Vision & AI:** YOLO (Ultralytics), OpenCV, cv_bridge
 - **Control Systems:** geometry_msgs/Twist, Quaternion Math, trajectory_msgs/JointTrajectory
 
-## Installation
-This project is built for Ubuntu 22.04 and ROS 2 Humble.
-1. **This project is built for Ubuntu 22.04 and ROS 2 Humble.**
+## Step-by-Step Execution Guide
+This project runs inside a fully pre-configured Docker container. To launch the complete simulation, open 4 separate terminal tabs on your host machine and follow these steps in order.
 
-Open a terminal and install the required simulators, mapping tools, arm controllers, and AI vision libraries:
+**Step 1: Build the Docker Environment (First Time Only)**
 
-    sudo apt update
-    sudo apt install ros-humble-gazebo-* ros-humble-cartographer ros-humble-cartographer-ros ros-humble-nav2-map-server ros-humble-urdf
-    sudo apt install ros-humble-turtlebot3 ros-humble-turtlebot3-msgs ros-humble-turtlebot3-simulations
-    sudo apt install ros-humble-dynamixel-sdk ros-humble-dynamixel-workbench-toolbox
-    sudo apt install ros-humble-turtlebot3-manipulation ros-humble-turtlebot3-manipulation-hardware
-    sudo apt install python3-opencv ros-humble-cv-bridge ros-humble-vision-opencv
-    pip3 install ultralytics
+Open a terminal in your project directory and build the container image:
 
-2. **Set Default Robot Model**
+    ./build_docker.sh
+**Terminal 1: The World (Gazebo & Robots)**
 
-Add the TurtleBot3 Waffle model to your bash profile:
+Open your main terminal, start the container, build the workspace, and launch the multi-robot world:
 
-    echo 'export TURTLEBOT3_MODEL=waffle' >> ~/.bashrc
-    source ~/.bashrc
+    ./run_docker.sh
+Once inside the container shell, run:
 
-3. **Build the Workspace**
-
-Clone this repository into a ROS 2 workspace and build it:
-
-    mkdir -p ~/collab_delivery_ws/src
-    cd ~/collab_delivery_ws/src
-
-Clone the repository here:
-
-    git clone https://github.com/gouranshb2002/Collaborative_AI_Delivery_System.git .
     cd ~/collab_delivery_ws
     colcon build --symlink-install
+    source /opt/ros/humble/setup.bash
     source install/setup.bash
-
-## How to Run (Gazebo Simulation)
-To run the complete autonomous orchestration in Gazebo, open 4 separate terminals and run the following commands in order.
-Note: Make sure to source your workspace ``source install/setup.bash`` in every terminal
-
-**Terminal 1: Launch the Physical World & Robots**
-
     ros2 launch delivery_core multi_bot.launch.py
-    
-**Terminal 2: Launch the YOLO AI Vision (Detector)**
+Note: Wait until the Gazebo GUI opens and both Waffle bots are fully spawned before proceeding.
 
-    ros2 run delivery_core detector_node
+**Terminal 2: The Vision (YOLOv8 & QR Detector)**
+1. Open a new terminal tab on your host machine.
+2. Attach into the running container:
 
-**Terminal 3: Launch the Facility Mapper (Patrol Route)**
+       ./into_docker.sh
+3. Source the environment and start the vision node:
+   
+        cd ~/collab_delivery_ws
+        source /opt/ros/humble/setup.bash
+        source install/setup.bash
+        ros2 run delivery_core detector_node
 
-    ros2 run delivery_core patrol_node
+**Terminal 3: The Mapper (Patrol Route)**
+1. Open a third terminal tab on your host machine.
+2. Attach into the running container:
 
-**Terminal 4: Launch the Central Planner (The Logistics Brain)**
+        ./into_docker.sh
+3. Source the environment and start the patrol node:
 
-    ros2 run delivery_core central_planner
-Note: The Central Planner will wait 50 seconds for the facility to be mapped before dispatching the Deliverer Bot to fulfill the order queue
+        cd ~/collab_delivery_ws
+        source /opt/ros/humble/setup.bash
+        source install/setup.bash
+        ros2 run delivery_core patrol_node
+
+**Terminal 4: The Central Planner (Logistics Brain)**
+1. Open your fourth terminal tab on your host machine.
+2. Attach into the running container:
+
+        ./into_docker.sh
+3. Source the environment and start the central orchestrator:
+
+        cd ~/collab_delivery_ws
+        source /opt/ros/humble/setup.bash
+        source install/setup.bash
+        ros2 run delivery_core central_planner
+Note: The Central Planner will wait 50 seconds for the facility to be mapped before dispatching the Deliverer Bot to fulfill the order queue.
 
 ## Physical Hardware Deployment Guide
 When deploying to physical TurtleBot3 hardware, the Python logic remains identical, but the processing load must be distributed properly. YOLO requires heavy computing power, so the AI node should run on your Host PC, while the robots just stream data and drive.
@@ -102,6 +105,6 @@ In simulation, the walls are mathematically perfect. In the real world, odometry
 
 ## Academic Information
 - Author: Gouransh Bhatnagar
-- Demo Video:
-- Presentation:
+- University: Technische Hochschule Deggendorf (Campus Cham)
+- LinkedIn: https://linkedin.com/in/gouranshbhatnagar
 - License: Apache License 2.0
