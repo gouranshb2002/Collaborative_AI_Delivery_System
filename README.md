@@ -1,4 +1,4 @@
-# Collaborative AI Delivery System
+# Collaborative AI Delivery System v1.1
 A fully autonomous, multi-robot logistics system built in ROS 2 (Humble). This project features AI-driven YOLO object detection, decentralized state-machine orchestration, and precise 5-DOF robotic arm kinematics to seamlessly bridge the gap between Gazebo simulation and physical hardware deployment.
 
 ## Summary
