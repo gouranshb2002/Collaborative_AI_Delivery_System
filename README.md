@@ -12,7 +12,7 @@ You can switch between these versions using the branch dropdown menu at the top-
 This project presents a fully autonomous, multi-robot delivery architecture designed to solve decentralized logistics challenges. The system orchestrates two distinct TurtleBot3 platforms to execute complex supply-chain tasks without human intervention:
 1. **The Detector Bot (Vision & Mapping):** Navigates the facility to locate inventory using an onboard camera and YOLO-based AI object detection.
 2. **The Central Planner (Master Node):** A centralized intelligence that manages a randomized order queue, processes the map data, and dispatches collision-free navigation commands.
-3. **The Deliverer Bot (Retrieval & Delivery):** Uses an OpenManipulator-X robotic arm to execute precise Joint Trajectory kinematics to pick up items and transport them to a designated drop-off zone.
+3. **The Delivery Bot (Retrieval & Delivery):** Uses an OpenManipulator-X robotic arm to execute precise Joint Trajectory kinematics to pick up items and transport them to a designated drop-off zone.
 
 ## Technology Stack
 - **Framework:** ROS 2 (Humble) / Ubuntu 22.04 LTS
